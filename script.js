@@ -12,11 +12,24 @@ async function getWeatherData(location, unit) {
     }
 
     const data = await response.json();
-    console.log(data);
-    return data;
+    const processed = processWeatherData(data);
+    console.log(processed);
+    return processed;
   } catch (error) {
     console.error("Error fetching weather data:", error);
   }
 }
 
 getWeatherData("London", "C");
+
+function processWeatherData(data) {
+  return {
+    location: data.resolvedAddress,
+    temperature: data.currentConditions.temp,
+    feelsLike: data.currentConditions.feelslike,
+    humidity: data.currentConditions.humidity,
+    condition: data.currentConditions.conditions,
+    icon: data.currentConditions.icon,
+    description: data.description,
+  };
+}
