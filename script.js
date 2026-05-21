@@ -32,6 +32,7 @@ function processWeatherData(data) {
 }
 
 let currentUnit = "C";
+let currentLocation = "";
 
 const form = document.getElementById("weather-form");
 const input = document.getElementById("location-input");
@@ -44,17 +45,24 @@ form.addEventListener("submit", async (e) => {
 
   if (!location) return;
 
+  currentLocation = location;
+
   const data = await getWeatherData(location, currentUnit);
   displayWeather(data);
 });
 
-toggleBtn.addEventListener("click", () => {
+toggleBtn.addEventListener("click", async () => {
   if (currentUnit == "C") {
     currentUnit = "F";
     toggleBtn.textContent = "Switch to °C";
   } else {
     currentUnit = "C";
     toggleBtn.textContent = "Switch to °F";
+  }
+
+  if (currentLocation) {
+    const data = await getWeatherData(currentLocation, currentUnit);
+    displayWeather(data);
   }
 });
 
