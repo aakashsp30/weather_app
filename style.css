@@ -1,0 +1,22 @@
+body {
+  min-height: 100vh;
+  margin: 0;
+  font-family: sans-serif;
+}
+
+body.sunny {
+  background-color: #f9c74f;
+}
+
+body.cloudy {
+  background-color: #adb5bd;
+}
+
+body.rainy {
+  background-color: #4a6fa5;
+  color: white;
+}
+
+body.snowy {
+  background-color: #caf0f8;
+}

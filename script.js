@@ -37,7 +37,7 @@ const form = document.getElementById("weather-form");
 const input = document.getElementById("location-input");
 const toggleBtn = document.getElementById("toggle-unit");
 
-form.addEventListener('submit', async (e) => {
+form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   const location = input.value.trim();
@@ -45,7 +45,7 @@ form.addEventListener('submit', async (e) => {
   if (!location) return;
 
   const data = await getWeatherData(location, currentUnit);
-  console.log(data);
+  displayWeather(data);
 });
 
 toggleBtn.addEventListener("click", () => {
@@ -57,3 +57,36 @@ toggleBtn.addEventListener("click", () => {
     toggleBtn.textContent = "Switch to °F";
   }
 });
+
+function displayWeather(data) {
+  const display = document.getElementById("weather-display");
+
+  display.innerHTML = `
+  <div class="weather-card">
+    <h2>${data.location}</h2>
+    <p class="temperature">${data.temperature}°${currentUnit}</p>
+    <p class="condition">${data.condition}</p>
+    <p class="feels-like">Feels like: ${data.feelsLike}°${currentUnit}</p>
+    <p class="humidity">Humidity: ${data.humidity}%</p>
+    <p class="description">${data.description}</p>
+  </div>
+  `;
+
+  setBackground(data.icon);
+}
+
+function setBackground(icon) {
+  const body = document.body;
+
+  if (icon.includes("rain")) {
+    body.className = "rainy";
+  } else if (icon.includes("snow")) {
+    body.className = "snowy";
+  } else if (icon.includes("cloud")) {
+    body.className = "cloudy";
+  } else if (icon.includes("clear") || icon.includes("sun")) {
+    body.className = "sunny";
+  } else {
+    body.className = "";
+  }
+}
