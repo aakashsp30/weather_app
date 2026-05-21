@@ -1,22 +1,116 @@
-body {
-  min-height: 100vh;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
   margin: 0;
-  font-family: sans-serif;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", sans-serif;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e0e0e0;
 }
 
 body.sunny {
-  background-color: #f9c74f;
+  background: linear-gradient(135deg, #f9c74f, #f4a261);
 }
 
 body.cloudy {
-  background-color: #adb5bd;
+  background: linear-gradient(135deg, #adb5bd, #6c757d);
+  color: white;
 }
 
 body.rainy {
-  background-color: #4a6fa5;
+  background: linear-gradient(135deg, #4a6fa5, #1b3a6b);
   color: white;
 }
 
 body.snowy {
-  background-color: #caf0f8;
+  background: linear-gradient(135deg, #caf0f8, #90e0ef);
+}
+
+#app {
+  width: 100%;
+  max-width: 480px;
+  padding: 2rem;
+}
+
+header h1 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  letter-spacing: 1px;
+}
+
+#weather-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 1.5rem;
+}
+
+#location-input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+}
+
+button {
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.2);
+  color: white;
+}
+
+button:hover {
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.weather-card {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+}
+
+.weather-card h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.temperature {
+  font-size: 4rem;
+  font-weight: bold;
+  margin: 0.5rem 0;
+}
+
+.condition {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  text-transform: capitalize;
+}
+
+.feels-like,
+.humidity {
+  font-size: 0.95rem;
+  opacity: 0.85;
+  margin: 0.25rem 0;
+}
+
+.description {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  opacity: 0.75;
+  font-style: italic;
 }
