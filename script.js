@@ -13,14 +13,11 @@ async function getWeatherData(location, unit) {
 
     const data = await response.json();
     const processed = processWeatherData(data);
-    console.log(processed);
     return processed;
   } catch (error) {
     console.error("Error fetching weather data:", error);
   }
 }
-
-getWeatherData("London", "C");
 
 function processWeatherData(data) {
   return {
@@ -33,3 +30,30 @@ function processWeatherData(data) {
     description: data.description,
   };
 }
+
+let currentUnit = "C";
+
+const form = document.getElementById("weather-form");
+const input = document.getElementById("location-input");
+const toggleBtn = document.getElementById("toggle-unit");
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const location = input.value.trim();
+
+  if (!location) return;
+
+  const data = await getWeatherData(location, currentUnit);
+  console.log(data);
+});
+
+toggleBtn.addEventListener("click", () => {
+  if (currentUnit == "C") {
+    currentUnit = "F";
+    toggleBtn.textContent = "Switch to °C";
+  } else {
+    currentUnit = "C";
+    toggleBtn.textContent = "Switch to °F";
+  }
+});
