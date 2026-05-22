@@ -18,4 +18,4 @@ A weather forecast web app built with vanilla JavaScript that fetches real-time 
 
 ## Live Demo
 
-[]
+[https://aakashsp30.github.io/weather_app/]
